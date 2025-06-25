@@ -54,6 +54,8 @@ directory or wherever you need your custom cabin sounds.
 - If the pack has pre-safety demos for morning, afternoon, and evening, you will still be asked  
 to match for a generic one — choose any you wish.
 
+- For full disclosure, this script is mainly AI generated, I have tested it in many cases with no issues. Use at your own will.
+
 
 ## TROUBLESHOOTING
 
