@@ -2,7 +2,6 @@
 
 This tool converts cabin announcement files from the Fenix A320 format into the FSLabs A320 format, using the correct filenames and folder structure required by FSLabs.
 
----
 
 ## REQUIREMENTS
 
@@ -15,7 +14,6 @@ This tool converts cabin announcement files from the Fenix A320 format into the 
 
 3. **Internet connection** – the script installs any Python packages it needs.
 
----
 
 ## HOW TO USE
 
@@ -44,7 +42,6 @@ This tool converts cabin announcement files from the Fenix A320 format into the 
 6. Copy the resulting `Sounds` folder into your FSLabs A320 installation  
 directory or wherever you need your custom cabin sounds.
 
----
 
 ## NOTES
 
@@ -57,7 +54,6 @@ directory or wherever you need your custom cabin sounds.
 - If the pack has pre-safety demos for morning, afternoon, and evening, you will still be asked  
 to match for a generic one — choose any you wish.
 
----
 
 ## TROUBLESHOOTING
 
