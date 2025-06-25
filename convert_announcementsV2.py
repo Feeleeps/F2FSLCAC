@@ -23,6 +23,7 @@ if subprocess.run(["ffmpeg", "-version"], stdout=subprocess.DEVNULL, stderr=subp
 # Define official FSLabs filenames
 fslabs_targets = {
     "FSL_A320X_CABIN_PA_BOARDING.ogg": ["BoardingWelcome"],
+    "FSL_A320X_CABIN_PA_BOARDING_MUSIC.ogg": ["BoardingMusic"],
     "FSL_A320X_CABIN_PA_BOARDING_FUEL.ogg": ["BoardingWelcome[Refueling]"],
     "FSL_A320X_CABIN_PA_BOARDING_COMPLETE.ogg": ["BoardingComplete"],
     "FSL_A320X_CABIN_PA_DOORS_AUTO.ogg": ["ArmDoors"],
@@ -34,9 +35,12 @@ fslabs_targets = {
     "FSL_A320X_CABIN_PA_BRIEFING_EVENING.ogg": ["PreSafetyBriefing[Evening]"],
     "FSL_A320X_CABIN_PA_SAFETY_BRIEFING.ogg": ["SafetyBriefing"],
     "FSL_A320X_CABIN_PA_LIGHTS_DIM.ogg": ["CabinDimTakeoff"],
-    "FSL_A320X_CABIN_PA_SECURE_FOR_TAKEOFF.ogg": ["CallCabinSecureTakeoff"],
+    "FSL_A320X_CABIN_PA_SECURE_FOR_TAKEOFF.ogg": ["CrewSeatsTakeoff"],
+    "FSL_A320X_CABIN_PA_READY_TAKEOFF.ogg": ["CallCabinSecureTakeoff"],
     "FSL_A320X_CABIN_PA_AFTER_TAKEOFF.ogg": ["AfterTakeoff"],
-    "FSL_A320X_CABIN_PA_SECURE_FOR_LANDING.ogg": ["CallCabinSecureLanding"],
+    "FSL_A320X_CABIN_PA_TURB.ogg": ["FastenSeatbelt"],
+    "FSL_A320X_CABIN_PA_SECURE_FOR_LANDING.ogg": ["CrewSeatsLanding"],
+    "FSL_A320X_CABIN_PA_READY_LANDING.ogg": ["CallCabinSecureLanding"],
     "FSL_A320X_CABIN_PA_AFTER_LANDING.ogg": ["AfterLanding"],
     "FSL_A320X_CABIN_PA_SEATBELTS.ogg": ["DescentSeatbelts"],
 }
