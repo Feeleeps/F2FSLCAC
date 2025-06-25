@@ -1,8 +1,6 @@
 # Fenix to FSLabs Cabin Announcements (F2FSLCAC)
 
-This tool converts cabin announcement files from the Fenix A320 format  
-into the FSLabs A320 format, using the correct filenames and folder  
-structure required by FSLabs.
+This tool converts cabin announcement files from the Fenix A320 format into the FSLabs A320 format, using the correct filenames and folder structure required by FSLabs.
 
 ---
 
