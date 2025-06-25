@@ -34,8 +34,9 @@ This tool converts cabin announcement files from the Fenix A320 format into the 
 ✔ Copy them into:  
 ➤ `export/YourFolderName/Sounds/Cabin/`
 
-6. Copy the resulting `Sounds` folder into your FSLabs A320 installation  
-directory or wherever you need your custom cabin sounds.
+6. Copy the resulting airline folder (e.g. `EWG`) folder into:
+
+`%AppData%\Microsoft Flight Simulator 2024\Packages\Community\fsl-a32x-airline-packs\`
 
 ## NOTES
 
