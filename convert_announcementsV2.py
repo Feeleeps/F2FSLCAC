@@ -83,10 +83,6 @@ for fsl_name, fenix_keys in fslabs_targets.items():
             # Match if k (case-insensitive) is contained in file stem (also case-insensitive)
             candidates += [f for f in all_files if k_lower in f.stem.lower()]
 
-    if not candidates:
-        # Suppressed warning about no match as requested
-        continue
-
     chosen = candidates[0]
     if len(candidates) > 1:
         print(f"\nMultiple options found for {fsl_name}:")
