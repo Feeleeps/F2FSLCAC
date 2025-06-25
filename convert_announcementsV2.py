@@ -1,6 +1,6 @@
 import os
 import sys
-import subprocess
+import shutil
 import re
 from pathlib import Path
 
@@ -9,18 +9,7 @@ def pause_exit(msg=None):
     input("\nPress Enter to exit...")
     sys.exit()
 
-# Ensure pydub is installed
-try:
-    from pydub import AudioSegment
-except ImportError:
-    subprocess.check_call([sys.executable, "-m", "pip", "install", "pydub"])
-    from pydub import AudioSegment
-
-# Check ffmpeg
-if subprocess.run(["ffmpeg", "-version"], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL).returncode != 0:
-    pause_exit("❌ FFmpeg not found. Install it and add to PATH. https://www.wikihow.com/Install-FFmpeg-on-Windows")
-
-# Define official FSLabs filenames
+# Define official FSLabs filenames and their matching Fenix tags (case-insensitive matching)
 fslabs_targets = {
     "FSL_A320X_CABIN_PA_BOARDING.ogg": ["BoardingWelcome"],
     "FSL_A320X_CABIN_PA_BOARDING_MUSIC.ogg": ["BoardingMusic"],
@@ -48,12 +37,15 @@ fslabs_targets = {
 # Select folder
 script_dir = Path(__file__).parent
 subfolders = [f for f in script_dir.iterdir() if f.is_dir() and f.name.lower() not in ["export", "__pycache__"]]
-if not subfolders: pause_exit("❌ No folders found next to this script.")
+if not subfolders:
+    pause_exit("❌ No folders found next to this script.")
 print("📁 Available folders:")
-for i, f in enumerate(subfolders, 1): print(f"{i}. {f.name}")
+for i, f in enumerate(subfolders, 1):
+    print(f"{i}. {f.name}")
 try:
     folder = subfolders[int(input("\nEnter number of folder to process: ")) - 1]
-except: pause_exit("Invalid selection.")
+except:
+    pause_exit("Invalid selection.")
 
 # Create export folder
 export_dir = script_dir / "export" / folder.name / "Sounds" / "Cabin"
@@ -61,27 +53,17 @@ export_dir.mkdir(parents=True, exist_ok=True)
 
 # Index all available .ogg files
 all_files = list(folder.glob("*.ogg"))
-# Create a dict with lowercase stems for case-insensitive lookup
-file_map = {f.stem.lower(): f for f in all_files}
 
-# Helper to find possible matches case-insensitively
-def find_possible_matches(key):
-    # Remove tags inside brackets (case-insensitive)
-    simplified = re.sub(r"\[.*?\]", "", key, flags=re.IGNORECASE).lower()
-    return [f for f in all_files if simplified in f.stem.lower()]
-
-# Convert files
 converted = 0
 for fsl_name, fenix_keys in fslabs_targets.items():
     candidates = []
     for k in fenix_keys:
-        k_lower = k.lower()
-        if k_lower in file_map:
-            candidates = [file_map[k_lower]]
-            break
-        else:
-            # Match if k (case-insensitive) is contained in file stem (also case-insensitive)
-            candidates += [f for f in all_files if k_lower in f.stem.lower()]
+        # Case-insensitive matching for all files containing the key in stem
+        candidates += [f for f in all_files if k.lower() in f.stem.lower()]
+
+    if not candidates:
+        # No match found, silently continue
+        continue
 
     chosen = candidates[0]
     if len(candidates) > 1:
@@ -96,9 +78,9 @@ for fsl_name, fenix_keys in fslabs_targets.items():
             continue
 
     print(f"✅ {chosen.name} → {fsl_name}")
-    AudioSegment.from_ogg(chosen).export(export_dir / fsl_name, format="ogg")
+    shutil.copy2(chosen, export_dir / fsl_name)
     converted += 1
 
-print(f"\n🎉 Done! {converted} files converted.")
+print(f"\n🎉 Done! {converted} files copied.")
 print(f"➡ Output folder: {export_dir.resolve()}")
 pause_exit()
