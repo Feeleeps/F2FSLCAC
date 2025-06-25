@@ -34,7 +34,7 @@ This tool converts cabin announcement files from the Fenix A320 format into the 
 ✔ Copy them into:  
 ➤ `export/YourFolderName/Sounds/Cabin/`
 
-6. Copy the resulting airline folder (e.g. `EWG`) folder into:
+6. You are then simply required to copy the resulting airline folder (e.g. `EWG`) into:
 
 `%AppData%\Microsoft Flight Simulator 2024\Packages\Community\fsl-a32x-airline-packs\`
 
