@@ -58,8 +58,12 @@ converted = 0
 for fsl_name, fenix_keys in fslabs_targets.items():
     candidates = []
     for k in fenix_keys:
-        # Case-insensitive matching for all files containing the key in stem
-        candidates += [f for f in all_files if k.lower() in f.stem.lower()]
+        k_lower = k.lower()
+        # Match whole word or exact stem using regex to prevent false positives (e.g., "ArmDoors" vs "DisarmDoors")
+        for f in all_files:
+            stem = f.stem.lower()
+            if re.search(rf"\b{k_lower}\b", stem):
+                candidates.append(f)
 
     if not candidates:
         # No match found, silently continue
